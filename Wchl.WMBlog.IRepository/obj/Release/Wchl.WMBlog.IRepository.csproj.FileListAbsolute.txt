@@ -1,0 +1,13 @@
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\bin\Release\Wchl.WMBlog.IRepository.dll
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\bin\Release\Wchl.WMBlog.IRepository.pdb
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\bin\Release\Wchl.WMBlog.Model.dll
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\bin\Release\EntityFramework.dll
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\bin\Release\Wchl.WMBlog.Model.pdb
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\bin\Release\Wchl.WMBlog.Model.dll.config
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\bin\Release\EntityFramework.xml
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\bin\Release\zh-Hans\EntityFramework.resources.dll
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\obj\Release\Wchl.WMBlog.IRepository.csprojResolveAssemblyReference.cache
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\obj\Release\Wchl.WMBlog.IRepository.csproj.CoreCompileInputs.cache
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\obj\Release\Wchl.WMBlog.IRepository.csproj.CopyComplete
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\obj\Release\Wchl.WMBlog.IRepository.dll
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.IRepository\obj\Release\Wchl.WMBlog.IRepository.pdb

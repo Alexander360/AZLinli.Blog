@@ -1,0 +1,61 @@
+﻿@model Wchl.WMBlog.Model.Models.TopicDetail
+@{
+    ViewBag.Title = Model.Topic.tName;
+}
+<link href="~/Content/lib/zui/doc.css" rel="stylesheet" />
+<link href="~/Content/lib/zui/zui.treemap.css" rel="stylesheet" />
+<script src="~/Content/lib/zui/zui_treemap.js"></script>
+
+<section>
+    <article>
+        <div spellcheck="false" class="example">
+            <br>
+            <ul class="breadcrumb">
+                <li><i class="icon-location-arrow icon-muted"></i></li>
+                <li><a href="/home/index">首页</a></li>
+                <li><a href="/blog/index">博客</a></li>
+                <li class="active">Data</li>
+            </ul>
+            <hr>
+            <article class="article">
+                <header>
+                    <h1 class="text-center">@Model.tdName</h1>
+                    <dl class="dl-inline">
+                        <dt>发布时间：</dt>
+                        <dd>@Model.tdCreatetime.ToString("yyyy年MM月dd日 HH时mm分ss秒")</dd>
+                        <dt>作者：</dt>
+                        <dd>@Model.Topic.tAuthor</dd>
+                        <dt></dt>
+                        <dd class="pull-right"><span class="label label-success">新</span> <span class="label label-warning">火爆</span> <span class="label label-info">原创</span> <span class="label label-danger"><i class="icon-eye-open"></i> @Model.tdRead</span></dd>
+                    </dl>
+                    <section class="abstract">
+                        <p><strong>专题：</strong>@Model.Topic.tName</p>
+                    </section>
+                </header>
+                <section class="article-content">
+                    @Html.Raw(Model.tdContent)
+                </section>
+                <footer>
+                    <p class="pull-right text-muted">
+                        发布时间：@Model.tdCreatetime.ToString("yyyy年MM月dd日 HH:mm:ss") &nbsp;点击数：@Model.tdRead
+                    </p>
+                    <p class="text-important">本文版权所有归<a href="###">@Model.Topic.tAuthor</a></p>
+                    <ul class="pager pager-justify">
+                        <li class="previous disabled"><a href="#" title=""><i class="icon-arrow-left"></i> 上一篇: </a></li>
+                        <li class="next disabled"><a href="#">下一篇: <i class="icon-arrow-right"></i></a></li>
+                    </ul>
+                </footer>
+            </article>
+        </div>
+    </article>
+
+
+</section>
+<script>
+    $(function () {
+        if ($('#treemapExample2')) {
+            $('#treemapExample2').treemap();
+        }
+    })
+   
+</script>

@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "访问";
+}
+
+@model PagedList<BlogArticle>
+<section>
+    <div spellcheck="false" class="example">
+        <br>
+        <ul class="breadcrumb breadcrumb-block">
+            <li><i class="icon-location-arrow icon-muted"></i></li>
+            <li><a href="/home/index">首页</a></li>
+            <li><a href="/blog/index">访问</a></li>
+            <li class="active">列表</li>
+        </ul>
+        <div class="list list-condensed">
+            <header>
+                <div class="pull-right">
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <button type="button" class="btn btn-default active"><i class="icon-th-list"></i></button>
+                        <button type="button" class="btn btn-default"><i class="icon-th"></i></button>
+                        <button type="button" class="btn btn-default"><i class="icon-th-large"></i></button>
+                    </div>
+                </div>
+                <h3><i class="icon-list-ul icon-border-circle"></i> 访问列表 &nbsp;<small>26 文章</small></h3>
+            </header>
+            <section id="items" class="items items-hover">
+            </section>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1274026473'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1274026473%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+
+
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+    <script type="text/javascript">
+            function handleSuccess(data, xhr, status) {
+
+            }
+    </script>
+}
+
+
+
+

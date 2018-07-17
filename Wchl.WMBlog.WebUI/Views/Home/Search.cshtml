@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "搜索";
+}
+
+<style>
+    .c-container {
+        width: 100%;
+        font-size: 13px;
+        line-height: 1.54;
+        word-wrap: break-word;
+        word-break: break-word;
+        table-layout: fixed;
+        margin-bottom: 14px;
+        border-collapse: collapse;
+        margin-left: 20px;
+    }
+
+    h3.t {
+        font-weight: 400;
+        font-size: medium;
+        margin-bottom: 1px;
+        line-height: 1.54;
+    }
+
+    .c-span18.c-span-last {
+    }
+
+    .general_image_pic.c-span6 {
+    }
+
+    .c-abstract {
+        font-size: 16px;
+    }
+
+    .f13 {
+    }
+
+    a.c-showurl {
+        color: green;
+        font-size: 12px;
+    }
+
+    h3.t a {
+        font-size: 16px;
+    }
+</style>
+
+<section>
+    <article>
+        <section class="article-content">
+            @Html.Raw(ViewBag.html)
+        </section>
+    </article>
+
+</section>

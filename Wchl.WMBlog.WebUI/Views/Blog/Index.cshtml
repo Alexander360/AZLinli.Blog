@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "博客";
+}
+
+@model PagedList<BlogArticle>
+
+<style>
+.items .item-content {
+    display: block;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+</style>
+<section>
+    <div spellcheck="false" class="example">
+        <br>
+        <ul class="breadcrumb breadcrumb-block">
+            <li><i class="icon-location-arrow icon-muted"></i></li>
+            <li><a href="/home/index">首页</a></li>
+            <li><a href="/blog/index">博文</a></li>
+            <li class="active">列表</li>
+        </ul>
+        <div class="list list-condensed">
+            <header>
+                <div class="pull-right">
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <button type="button" class="btn btn-default active"><i class="icon-th-list"></i></button>
+                        <button type="button" class="btn btn-default"><i class="icon-th"></i></button>
+                        <button type="button" class="btn btn-default"><i class="icon-th-large"></i></button>
+                    </div>
+                </div>
+                <h3><i class="icon-list-ul icon-border-circle"></i> 博文列表 &nbsp;<small>26 文章</small></h3>
+            </header>
+            <section id="items" class="items items-hover">
+                @Html.Partial("_ArticleList", Model)
+            </section>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+    <script type="text/javascript">
+            function handleSuccess(data, xhr, status) {
+
+            }
+    </script>
+}
+
+
+
+

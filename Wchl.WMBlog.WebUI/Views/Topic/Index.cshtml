@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "博客";
+}
+
+@model PagedList<Topic>
+
+<style>
+    .items .item-content {
+        display: block;
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+</style>
+<section>
+    <div spellcheck="false" class="example">
+        <br>
+        <ul class="breadcrumb breadcrumb-block">
+            <li><i class="icon-location-arrow icon-muted"></i></li>
+            <li><a href="/home/index">首页</a></li>
+            <li><a href="/blog/index">博文</a></li>
+            <li class="active">列表</li>
+        </ul>
+        <div class="list list-condensed" style="margin:20px;">
+            <div class="cards cards-borderless">
+                @{
+                    foreach (var item in Model)
+                    {
+
+
+                        <div class="col-md-4 col-sm-6 col-lg-3">
+                            <a class="card" href="/topic/detail/@(item.Id)">
+                                <img style="width: 392px;height: 200px;" src="@(item.tLogo)" alt="">
+                                <div class="caption">@(item.tName)</div>
+                                <div class="card-heading"><strong>@(item.tName)</strong></div>
+                                <div class="card-content text-muted">@(item.tDetail)</div>
+                            </a>
+                        </div>
+
+
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+    <script type="text/javascript">
+        function handleSuccess(data, xhr, status) {
+
+        }
+    </script>
+}
+
+
+
+

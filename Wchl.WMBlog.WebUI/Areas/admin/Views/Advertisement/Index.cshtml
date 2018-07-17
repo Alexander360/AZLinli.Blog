@@ -1,0 +1,373 @@
+﻿
+@{
+    ViewBag.Title = "广告管理";
+}
+@section stylesheet{
+    <link href="~/Content/CSS/blogArticleStyle.css" rel="stylesheet" />
+    <link href="~/Content/lib/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/lib/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/lib/webuploader/dist/webuploader.css" rel="stylesheet" />
+    <style type="text/css">
+        .uploader-list {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .file-item {
+            float: left;
+            position: relative;
+            margin: 0 20px 20px 0;
+            padding: 4px;
+        }
+
+            .file-item .info {
+                position: absolute;
+                left: 4px;
+                bottom: 4px;
+                right: 4px;
+                height: 20px;
+                line-height: 20px;
+                text-indent: 5px;
+                background: rgba(0, 0, 0, 0.6);
+                color: white;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-size: 12px;
+                z-index: 10;
+            }
+
+            .file-item .error {
+                position: absolute;
+                top: 4px;
+                left: 4px;
+                right: 4px;
+                background: red;
+                color: white;
+                text-align: center;
+                height: 20px;
+                font-size: 14px;
+                line-height: 23px;
+            }
+
+        .upload-state-done:after {
+            content: "\f00c";
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 32px;
+            position: absolute;
+            bottom: 0;
+            right: 4px;
+            color: #4cae4c;
+            z-index: 99;
+        }
+
+        .thumbnail {
+        }
+        /*表格信息对齐重写*/
+        .dataTables_wrapper .dataTables_length {
+            float: left;
+            margin-left: 15px;
+            margin-top: 5px;
+        }
+    </style>
+}
+
+@*<link href="~/Content/CSS/userStyle.css" rel="stylesheet" />*@
+<script src="~/Content/lib/DataTables/js/jquery.dataTables.js"></script>
+<script src="~/Content/lib/DataTables/js/dataTables.bootstrap.js"></script>
+<script src="~/Content/lib/webuploader/dist/webuploader.js"></script>
+<script src="~/Content/lib/layer/layer.js"></script>
+<script type="text/javascript">
+    var table;
+    // 图片上传demo
+    $(function () {
+        //百度上传方法
+        baiduuploader();
+        //创建表格
+        creatabel();
+    });
+    //初始化表格
+    function creatabel() {
+        table = $('#adtabel').DataTable({
+            "processing": true,
+            "serverSide": true,
+            //"paging": true,
+            "scrollY": 366,
+            "ajax": {
+                url: '@Url.Action("getData", "Advertisement")'
+                //"dataType": "json"
+            },
+           // "pagingType": "full_numbers",
+           // "sLoadingRecords": "正在加载数据...",
+           // "sZeroRecords": "暂无数据",
+            //"stateSave": true,
+            "searching": false,
+            "aaSorting": [[1, "desc"]],//默认第几个排序
+            "dom": 'rt<"bottom"iflp><"clear">',
+            "columns": [
+               {
+                   "data": "count",
+                    "width": "28px",
+               },
+               {
+                   "data": "imgUrl",
+                   "width": "60px",
+                   render: function (data, type, row, meta) {
+                       //这里是主题  把url变成超链接、把图片路径显示为图片
+                       //return "<a href='" + data + "'>" + data + "</a>";
+                       return "<img src='" + data + "' style='width:50px;height:50px'  />";
+                   }
+               },
+               { "data": "title" },
+               { "data": "url" },
+               { "data": "createdate" },
+               { "data": "remark" },
+               {
+                   data: null
+               }
+            ],
+            "columnDefs": [
+                {
+                    //   指定第一列，从0开始，0表示第一列，1表示第二列……
+                    targets: -1,
+                    "width": "100px",
+                    render: function (data, type, row, meta) {
+                        return '<a type="button" class="btn btn-danger"  href="#" onclick="del(\'' + row.id + '\')" ><i class="icon icon-trash"></i>删除</a>'
+                    }
+                }
+            ],
+            "language": {
+                "processing": "玩命加载中...",
+                "lengthMenu": "显示 _MENU_ 项结果",
+                "zeroRecords": "没有匹配结果",
+                "info": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                "infoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                "infoFiltered": "(由 _MAX_ 项结果过滤)",
+                "infoPostFix": "",
+                "url": "",
+                "paginate": {
+                    "first": "首页",
+                    "previous": "上一页",
+                    "next": "下一页",
+                    "last": "末页"
+                }
+            }
+        });
+    };
+
+    //删除轮播数据
+    function del(adid) {
+        if (confirm("是否确认删除？"))
+        {
+            $.post('@Url.Action("del", "Advertisement")', { id: adid },function(ajaxobj){
+                if(ajaxobj.status=="0")
+                {
+                    //如果后台删除成功，则刷新表格，并提示用户删除成功
+                    //保留分页信息
+                    table.ajax.reload(null, false);
+                    helper.layer_success('删除成功');
+                }
+            })
+        }
+    }
+
+    //百度上传
+    function baiduuploader() {
+        var $ = jQuery,
+           $list = $('#fileList'),
+           // 优化retina, 在retina下这个值是2
+           ratio = window.devicePixelRatio || 1,
+
+           // 缩略图大小
+           thumbnailWidth = 80 * ratio,
+           thumbnailHeight = 80 * ratio,
+
+           // Web Uploader实例
+           uploader;
+
+        // 初始化Web Uploader
+        uploader = WebUploader.create({
+
+            // 自动上传。
+            auto: true,
+
+            // swf文件路径
+            swf: '/Content/lib/webuploader/dist/Uploader.swf',
+
+            // 文件接收服务端。
+            server: '@Url.Action("UpLoadProcess", "Advertisement")',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#filePicker',
+
+            // 只允许选择文件，可选。
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
+        });
+
+        // 当有文件添加进来的时候
+        uploader.on('fileQueued', function (file) {
+            var $li = $(
+                    '<div id="' + file.id + '" class="file-item thumbnail">' +
+                        '<img>' +
+                        '<div class="info">' + file.name + '</div>' +
+                    '</div>'
+                    ),
+                $img = $li.find('img');
+
+            $list.append($li);
+
+            // 创建缩略图
+            uploader.makeThumb(file, function (error, src) {
+                if (error) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+
+                $img.attr('src', src);
+            }, thumbnailWidth, thumbnailHeight);
+        });
+
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on('uploadProgress', function (file, percentage) {
+            var $li = $('#' + file.id),
+                $percent = $li.find('.progress span');
+
+            // 避免重复创建
+            if (!$percent.length) {
+                $percent = $('<p class="progress"><span></span></p>')
+                        .appendTo($li)
+                        .find('span');
+            }
+
+            $percent.css('width', percentage * 100 + '%');
+        });
+
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+        uploader.on('uploadSuccess', function (file, response) {
+            $('#' + file.id).addClass('upload-state-done');
+            //alert(response.filePath);
+            $('#ImgUrl').val(response.filePath);
+        });
+
+        // 文件上传失败，现实上传出错。
+        uploader.on('uploadError', function (file) {
+            var $li = $('#' + file.id),
+                $error = $li.find('div.error');
+
+            // 避免重复创建
+            if (!$error.length) {
+                $error = $('<div class="error"></div>').appendTo($li);
+            }
+
+            $error.text('上传失败');
+        });
+
+        // 完成上传完了，成功或者失败，先删除进度条。
+        uploader.on('uploadComplete', function (file) {
+            $('#' + file.id).find('.progress').remove();
+        });
+    };
+
+    //上传轮播信息成功之后调用
+    function afterSu(ajaxobj) {
+        if (ajaxobj.status == "0") {
+            helper.layer_success('上传成功!');
+            window.location.reload();
+        } else if (ajaxobj.status == "1") {
+            helper.layer_error('上传失败!');
+            window.location.reload();
+        }
+    }
+</script>
+
+<!-- head star -->
+<div class="tnav row border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2 class="fl">博客后台</h2>
+        <ol class="breadcrumb fl">
+            <li><a href="/admin/Home">广告管理</a></li>
+            <li><strong>轮播图管理</strong></li>
+        </ol>
+    </div>
+</div>
+<!-- head end -->
+
+<div class="example scrollbar-hover" style="max-height: 600px; overflow: scroll;">
+    <!--table star-->
+    <table id="adtabel" class="table table-striped table-bordered table-hover dataTables-example dataTable" cellspacing="0">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>图片</th>
+                <th>标题</th>
+                <th>链接</th>
+                <th>创建时间</th>
+                <th>备注</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <!-- tbody是必须的 -->
+
+    </table>
+    <!--table end-->
+    <hr />
+    <!--form star-->
+    @using (Ajax.BeginForm("add", "Advertisement", new AjaxOptions()
+    {
+        Url=Url.Action("add", "Advertisement"),
+        HttpMethod = "post",
+        OnSuccess = "afterSu"
+    }, new { @class = "form-horizontal" }))
+    {
+        <input type="hidden" id="ImgUrl" name="ImgUrl" value="" />
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="Title" class="col-sm-2">标题：</label>
+                    <div class="col-md-4 col-sm-10">
+                        <input type="text" class="form-control" id="Title" name="Title" placeholder="标题">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Url" class="col-sm-2">链接：</label>
+                    <div class="col-md-4 col-sm-10">
+                        <input type="text" class="form-control" name="Url" id="Url" placeholder="http://">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Remark" class="col-sm-2">备注：</label>
+                    <div class="col-md-4 col-sm-10">
+                        <textarea rows="2" type="text" class="form-control" name="Remark" id="Remark" placeholder="说明"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword4" class="col-sm-2">上传图片：</label>
+                <div class="col-md-10 col-sm-10">
+                    <!--dom结构部分-->
+                    <div id="uploader-demo">
+                        <!--用来存放item-->
+                        <div id="fileList" class="uploader-list"></div>
+                        <div id="filePicker">选择图片</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-info">提交</button>
+                </div>
+            </div>
+    }
+    <!--form end-->
+</div>
+
+

@@ -1,0 +1,276 @@
+﻿@{
+    ViewBag.Title = "添加专题";
+}
+
+@model  Wchl.WMBlog.Model.Models.Topic
+
+<link href="~/Content/CSS/animate.css" rel="stylesheet" />
+<link href="~/Content/lib/wangEditor/dist/css/wangEditor.css" rel="stylesheet" />
+<link href="~/Content/CSS/blogArticleStyle.css" rel="stylesheet" />
+
+<link href="~/Content/lib/webuploader/dist/webuploader.css" rel="stylesheet" />
+<style type="text/css">
+    .uploader-list {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .file-item {
+        float: left;
+        position: relative;
+        margin: 0 20px 20px 0;
+        padding: 4px;
+    }
+
+        .file-item .info {
+            position: absolute;
+            left: 4px;
+            bottom: 4px;
+            right: 4px;
+            height: 20px;
+            line-height: 20px;
+            text-indent: 5px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 12px;
+            z-index: 10;
+        }
+
+        .file-item .error {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            background: red;
+            color: white;
+            text-align: center;
+            height: 20px;
+            font-size: 14px;
+            line-height: 23px;
+        }
+
+    .upload-state-done:after {
+        content: "\f00c";
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 32px;
+        position: absolute;
+        bottom: 0;
+        right: 4px;
+        color: #4cae4c;
+        z-index: 99;
+    }
+
+    .thumbnail {
+    }
+    /*表格信息对齐重写*/
+    .dataTables_wrapper .dataTables_length {
+        float: left;
+        margin-left: 15px;
+        margin-top: 5px;
+    }
+</style>
+
+
+<script src="~/Content/lib/wangEditor/dist/js/wangEditor.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Content/lib/webuploader/dist/webuploader.js"></script>
+<script type="text/javascript">
+    $(function () {
+        baiduuploader();
+
+
+
+    });
+
+     //百度上传
+    function baiduuploader() {
+        var $ = jQuery,
+           $list = $('#fileList'),
+           // 优化retina, 在retina下这个值是2
+           ratio = window.devicePixelRatio || 1,
+
+           // 缩略图大小
+           thumbnailWidth = 80 * ratio,
+           thumbnailHeight = 80 * ratio,
+
+           // Web Uploader实例
+           uploader;
+
+        // 初始化Web Uploader
+        uploader = WebUploader.create({
+
+            // 自动上传。
+            auto: true,
+
+            // swf文件路径
+            swf: '/Content/lib/webuploader/dist/Uploader.swf',
+
+            // 文件接收服务端。
+            server: '@Url.Action("UpLoadProcess", "Advertisement")',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#filePicker',
+
+            // 只允许选择文件，可选。
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
+        });
+
+        // 当有文件添加进来的时候
+        uploader.on('fileQueued', function (file) {
+            var $li = $(
+                    '<div id="' + file.id + '" class="file-item thumbnail">' +
+                        '<img>' +
+                        '<div class="info">' + file.name + '</div>' +
+                    '</div>'
+                    ),
+                $img = $li.find('img');
+
+            $list.append($li);
+
+            // 创建缩略图
+            uploader.makeThumb(file, function (error, src) {
+                if (error) {
+                    $img.replaceWith('<span>不能预览</span>');
+                    return;
+                }
+
+                $img.attr('src', src);
+            }, thumbnailWidth, thumbnailHeight);
+        });
+
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on('uploadProgress', function (file, percentage) {
+            var $li = $('#' + file.id),
+                $percent = $li.find('.progress span');
+
+            // 避免重复创建
+            if (!$percent.length) {
+                $percent = $('<p class="progress"><span></span></p>')
+                        .appendTo($li)
+                        .find('span');
+            }
+
+            $percent.css('width', percentage * 100 + '%');
+        });
+
+        // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+        uploader.on('uploadSuccess', function (file, response) {
+            $('#' + file.id).addClass('upload-state-done');
+            //alert(response.filePath);
+            $('#tLogo').val(response.filePath);
+        });
+
+        // 文件上传失败，现实上传出错。
+        uploader.on('uploadError', function (file) {
+            var $li = $('#' + file.id),
+                $error = $li.find('div.error');
+
+            // 避免重复创建
+            if (!$error.length) {
+                $error = $('<div class="error"></div>').appendTo($li);
+            }
+
+            $error.text('上传失败');
+        });
+
+        // 完成上传完了，成功或者失败，先删除进度条。
+        uploader.on('uploadComplete', function (file) {
+            $('#' + file.id).find('.progress').remove();
+        });
+    };
+
+
+    //添加博文之后
+    function afterAddBlog(data) {
+        var serverData = data.split(':');
+        alert(serverData[1]);
+        //if (serverData[0] == "ok")
+        //{
+        //    alert(serverData[1]);
+        //    //window.location.reload();
+        //}
+    };
+</script>
+<div class="blogcontent">
+    <!-- head star -->
+    <div class="tnav row border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2 class="fl">专题后台</h2>
+            <ol class="breadcrumb fl">
+                <li><a href="/admin/Home">专题管理</a></li>
+                <li><strong>发布专题</strong></li>
+            </ol>
+        </div>
+    </div>
+    <!-- head end -->
+    <!-- form star -->
+    <div class="">
+        <div class="wrapper wrapper-content animated fadeInUp" style="height:600px;padding-bottom:30px;overflow:auto">
+            <form action="/admin/Topic/Add" class="form-horizontal" id="formTicket1" method="post" enctype="multipart/form-data">
+
+                <input type='hidden' name='Id' id='Id' value='@(Model.Id)' />
+                <div class="form-group">
+                    <label class="col-md-1 control-label">标题&nbsp;:</label>
+                    <div class="col-md-11">
+                        <input type='text' name='tName' id='tName' value='@(Model.tName)' class='form-control' placeholder='' />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-1 control-label">简介&nbsp;:</label>
+                    <div class="col-md-11">
+                        <input type='text' name='tDetail' id='tDetail' value='@(Model.tDetail)' class='form-control' placeholder='' />
+                    </div>
+                </div>
+
+                <input type="hidden" id="tLogo" name="tLogo" value="@(Model.tLogo)" />
+                <div class="form-group">
+                    <label for="exampleInputPassword4" class="col-sm-1">上传图片(390*200)：</label>
+                    <div class="col-md-10 col-sm-10">
+                        <!--dom结构部分-->
+                        <div id="uploader-demo">
+                            <!--用来存放item-->
+                            <div id="fileList" class="uploader-list"></div>
+                            <div id="filePicker">选择图片</div>
+                        </div>
+                    </div>
+                    <img src="@(Model.tLogo)" style="width:390px;height:200px;" />
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-1 col-md-10">
+                        <input type='submit' onclick="{  return checkURL(); }" id='submit' class='btn btn-info' value='保存' data-loading='稍候...' />
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- form end -->
+</div>
+<script>
+    function checkURL() {
+        if (!$("[name=tName]").val()) {
+            helper.layer_error('标题不能为空');
+            $("[name='tName']").focus();
+            return false;
+        }
+
+
+        return true;
+    }
+
+</script>
+
+

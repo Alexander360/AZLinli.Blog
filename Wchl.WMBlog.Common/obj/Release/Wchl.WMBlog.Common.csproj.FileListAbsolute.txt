@@ -1,0 +1,14 @@
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\bin\Release\NLog.config
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\bin\Release\Wchl.WMBlog.Common.dll
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\bin\Release\Wchl.WMBlog.Common.pdb
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\bin\Release\Newtonsoft.Json.dll
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\bin\Release\NLog.dll
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\bin\Release\StackExchange.Redis.dll
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\bin\Release\Newtonsoft.Json.xml
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\bin\Release\NLog.xml
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\bin\Release\StackExchange.Redis.xml
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\obj\Release\Wchl.WMBlog.Common.csprojResolveAssemblyReference.cache
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\obj\Release\Wchl.WMBlog.Common.csproj.CoreCompileInputs.cache
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\obj\Release\Wchl.WMBlog.Common.csproj.CopyComplete
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\obj\Release\Wchl.WMBlog.Common.dll
+C:\Users\v-anzha\Desktop\Wchl.WMBlog\Wchl.WMBlog.Common\obj\Release\Wchl.WMBlog.Common.pdb

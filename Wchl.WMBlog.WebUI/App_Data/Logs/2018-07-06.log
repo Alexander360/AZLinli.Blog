@@ -1,0 +1,89 @@
+------------------------------Start------------------------------
+2018-07-06 12:42:58.1704 - ERROR:Error Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:30) Autofac.Core.DependencyResolutionException An error occurred during the activation of a particular registration. See the inner exception for details. Registration: Activator = RedisCacheManager (ReflectionActivator), Services = [Wchl.WMBlog.Common.Cache.ICacheManager], Lifetime = Autofac.Core.Lifetime.CurrentScopeLifetime, Sharing = None, Ownership = OwnedByLifetimeScope ---> An exception was thrown while invoking the constructor 'Void .ctor()' on type 'RedisCacheManager'. ---> It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING (See inner exception for details.) (See inner exception for details.) System.Object Activate(System.Collections.Generic.IEnumerable`1[Autofac.Core.Parameter])    at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Execute()
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.ResolveOperation.Execute(IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at Wchl.WMBlog.WebCore.Filters.CheckLoginAttribute.OnActionExecuting(ActionExecutingContext filterContext) in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.WebCore\Filters\CheckLoginAttribute.cs:line 27
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__31(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+DependencyResolutionException An exception was thrown while invoking the constructor 'Void .ctor()' on type 'RedisCacheManager'. ---> It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING (See inner exception for details.) System.Object Instantiate()    at Autofac.Core.Activators.Reflection.ConstructorParameterBinding.Instantiate()
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.ActivateInstance(IComponentContext context, IEnumerable`1 parameters)
+   at Autofac.Core.Resolving.InstanceLookup.Activate(IEnumerable`1 parameters)
+RedisConnectionException It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING StackExchange.Redis.ConnectionMultiplexer ConnectImpl(System.Func`1[StackExchange.Redis.ConnectionMultiplexer], System.IO.TextWriter)    at StackExchange.Redis.ConnectionMultiplexer.ConnectImpl(Func`1 multiplexerFactory, TextWriter log)
+   at Wchl.WMBlog.Common.Cache.RedisCacheManager.GetRedisConnection() in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Cache\RedisCacheManager.cs:line 44
+   at Wchl.WMBlog.Common.Cache.RedisCacheManager..ctor() in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Cache\RedisCacheManager.cs:line 28
+   at lambda_method(Closure , Object[] )
+   at Autofac.Core.Activators.Reflection.ConstructorParameterBinding.Instantiate()
+------------------------------End------------------------------
+2018-07-06 13:21:03.6625 - ERROR:Error Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:30) System.TypeInitializationException The type initializer for 'JiebaNet.Segmenter.JiebaSegmenter' threw an exception. Void .ctor()    at JiebaNet.Segmenter.JiebaSegmenter..ctor()
+   at Wchl.WMBlog.WebUI.Controllers.HomeController.Home(String s) in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.WebUI\Controllers\HomeController.cs:line 39
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+DirectoryNotFoundException Could not find a part of the path 'E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.WebUI\Resources\prob_trans.json'. Void WinIOError(Int32, System.String)    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   at JiebaNet.Segmenter.FinalSeg.Viterbi.LoadModel() in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Segmenter\Viterbi.cs:line 78
+   at JiebaNet.Segmenter.FinalSeg.Viterbi..ctor() in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Segmenter\Viterbi.cs:line 28
+   at JiebaNet.Segmenter.FinalSeg.Viterbi.<>c.<.cctor>b__14_0() in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Segmenter\Viterbi.cs:line 15
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at JiebaNet.Segmenter.FinalSeg.Viterbi.get_Instance() in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Segmenter\Viterbi.cs:line 34
+   at JiebaNet.Segmenter.JiebaSegmenter..cctor() in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Segmenter\JiebaSegmenter.cs:line 16
+------------------------------End------------------------------
+2018-07-06 14:33:22.2942 - ERROR:The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult getGuestbook(Int32, Int32)' in 'Wchl.WMBlog.WebUI.Controllers.BlogController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:25) 
+------------------------------End------------------------------
+2018-07-06 16:06:11.3081 - ERROR:Error Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:30) System.IO.FileNotFoundException no segments* file found in Lucene.Net.Store.SimpleFSDirectory@SearchIndex lockFactory=Lucene.Net.Store.NativeFSLockFactory: files: System.Object Run(Lucene.Net.Index.IndexCommit)    at Lucene.Net.Index.SegmentInfos.FindSegmentsFile.Run(IndexCommit commit)
+   at Lucene.Net.Index.DirectoryReader.Open(Directory directory, IndexDeletionPolicy deletionPolicy, IndexCommit commit, Boolean readOnly, Int32 termInfosIndexDivisor)
+   at Lucene.Net.Search.IndexSearcher..ctor(Directory path, Boolean readOnly)
+   at SearchTest.PanGuLuceneHelper.Search(String _flag, String keyword, Int32 PageIndex, Int32 PageSize, Int32& TotalCount) in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Segmenter\PanGuLuceneHelper.cs:line 220
+   at Wchl.WMBlog.WebUI.Controllers.HomeController.Search(String wd) in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.WebUI\Controllers\HomeController.cs:line 83
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-07-06 16:08:12.5907 - ERROR:Error Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:30) System.IO.FileNotFoundException no segments* file found in Lucene.Net.Store.SimpleFSDirectory@SearchIndex lockFactory=Lucene.Net.Store.NativeFSLockFactory: files: System.Object Run(Lucene.Net.Index.IndexCommit)    at Lucene.Net.Index.SegmentInfos.FindSegmentsFile.Run(IndexCommit commit)
+   at Lucene.Net.Index.DirectoryReader.Open(Directory directory, IndexDeletionPolicy deletionPolicy, IndexCommit commit, Boolean readOnly, Int32 termInfosIndexDivisor)
+   at Lucene.Net.Search.IndexSearcher..ctor(Directory path, Boolean readOnly)
+   at SearchTest.PanGuLuceneHelper.Search(String _flag, String keyword, Int32 PageIndex, Int32 PageSize, Int32& TotalCount) in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Segmenter\PanGuLuceneHelper.cs:line 220
+   at Wchl.WMBlog.WebUI.Controllers.HomeController.Search(String wd) in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.WebUI\Controllers\HomeController.cs:line 83
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+------------------------------End------------------------------

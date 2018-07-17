@@ -1,0 +1,85 @@
+﻿@model Wchl.WMBlog.Model.VeiwModels.LoginInfoViewModels
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>后台登录</title>
+    <link href="~/Content/CSS/zui.css" rel="stylesheet" />
+    <link href="~/Content/CSS/zui-theme-blue.css" rel="stylesheet" />
+    <link href="~/Content/CSS/login.css" rel="stylesheet" />
+    <script src="~/Content/JS/jquery-1.12.4.min.js"></script>
+    <script src="~/Content/JS/zui.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        function resetVcode()
+        {
+            //此处在IE浏览器中会被缓存
+            var url = '@Url.Action("Vcode","Vcode")' + "?rid=" + Math.random();
+            $("#imgcode").attr("src", url);
+        }
+        function success(ajaxobj)
+        {
+            if (ajaxobj.status == "1") {
+                alert(ajaxobj.msg);
+            } else {
+                //跳转到首页
+                window.location = '@Url.Action("Index","Home")';
+            }
+        }
+    </script>
+</head>
+<body>
+    <article>
+        <div class="example">
+                @using (Ajax.BeginForm("Login","Login",new AjaxOptions() {
+                    HttpMethod="Post",
+                    Url=Url.Action("Login", "Login"),
+                    OnSuccess="success"
+                },new { @class= "form-horizontal" }))
+                {
+                    <h1>登&nbsp&nbsp录</h1>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-1 col-md-10 col-sm-10 input-group Component">
+                                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                                            <input type="text" class="form-control" id="uLoginName" name="uLoginName" placeholder="用户名">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-1 col-md-10 col-sm-10 input-group Component">
+                                            <span class="input-group-addon"><i class="icon-key"></i></span>
+                                            <input type="password" class="form-control" id="uLoginPwd" name="uLoginPwd" placeholder="密码">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-1 col-md-10 col-sm-10 input-group Component">
+                                            <div class="col-md-6 col-sm-10">
+                                                <label for="VCode" class="col-sm-5">验证码:</label>
+                                                <input type="text" id="VCode" name="VCode" class="col-sm-7" placeholder="验证码">
+                                            </div>
+                                            <div class="col-md-3 col-sm-5">
+                                                <img src="@Url.Action("Vcode", "Vcode")" id="imgcode" onclick="resetVcode()" height="25" width="65" style="cursor:pointer;" />
+                                            </div>
+                                            <div class="checkbox login-cb">
+                                                <label>
+                                                    @Html.CheckBoxFor(c=>c.IsMember) 记住我
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-1 col-sm-10">
+                                            <input type="submit" class="btn btn-lg btn-info col-md-12" value="登录">
+                                        </div>
+                                    </div>
+                }
+        </div>
+    </article>
+</body>
+</html>

@@ -1,0 +1,8 @@
+E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.DBHelper\obj\Debug\Wchl.WMBlog.DBHelper.csprojResolveAssemblyReference.cache
+E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.DBHelper\obj\Debug\Wchl.WMBlog.DBHelper.csproj.CoreCompileInputs.cache
+E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.DBHelper\bin\Debug\Wchl.WMBlog.DBHelper.dll
+E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.DBHelper\bin\Debug\Wchl.WMBlog.DBHelper.pdb
+E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.DBHelper\bin\Debug\log4net.dll
+E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.DBHelper\obj\Debug\Wchl.WMBlog.DBHelper.csproj.CopyComplete
+E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.DBHelper\obj\Debug\Wchl.WMBlog.DBHelper.dll
+E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.DBHelper\obj\Debug\Wchl.WMBlog.DBHelper.pdb

@@ -1,0 +1,308 @@
+﻿@{
+    ViewBag.Title = "AL一下";
+}
+
+<link href="http://blog.azlinli.com/Content/CSS/bootstrap.min.css" rel="stylesheet">
+<style>
+
+
+    .carousel {
+        height: 440px;
+        background-color: #000;
+    }
+
+        .carousel .item {
+            background-color: #000;
+            height: 440px;
+        }
+
+        .carousel img {
+            margin: auto;
+            width: 100%;
+            height: 100%;
+        }
+
+    .carousel-caption {
+        margin-bottom: 58px;
+    }
+
+    .carousel-indicators {
+        margin-bottom: 38px;
+    }
+
+    .panel {
+        width: 128px;
+        height: 156px;
+        text-align: center;
+        margin: auto;
+        font-size: 18px;
+    }
+
+
+    .div_function {
+        margin: auto;
+        margin-top: -52px;
+    }
+
+    .iv_function {
+        width: 68px;
+        height: 68px;
+        margin-top: 12px;
+    }
+
+    /* 分割线 */
+    .div_divider {
+        margin-top: 24px;
+        color: #34374C;
+    }
+
+    .hr_1 {
+        width: 50px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .hr_2 {
+        width: 80%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    /* 文章列表 */
+    .div_article {
+        margin-top: 24px;
+    }
+
+    /* 文章顶部栏 */
+    .item_article_first {
+        background-color: #34374C !important;
+        border-color: #34374C !important;
+    }
+
+    .item_article {
+        min-height: 120px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+    }
+
+        .item_article .row {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            overflow: hidden;
+        }
+
+    .div_center {
+        height: auto;
+        max-height: 140px;
+        overflow: hidden;
+    }
+
+    .div_article_title {
+        font-size: 22px;
+    }
+
+    .div_article_content {
+        color: #a0a0a0;
+        word-wrap: break-word;
+        word-break: break-all;
+        width: 100%;
+    }
+
+    .iv_article {
+        width: 88px;
+        height: 88px;
+        margin: auto;
+    }
+
+    .div_right_info {
+        text-align: right;
+    }
+
+    /* 随手记 */
+    .div_record {
+        margin-top: 24px;
+    }
+
+    .div_save {
+        text-align: right;
+    }
+
+    .btn_save_record {
+        width: 100%;
+        background-color: #34374C;
+        border-color: #34374C;
+    }
+
+    /* 小功能列表 */
+    .btn-cricle {
+        width: 48px;
+        height: 48px;
+        border-radius: 24px;
+        text-align: center;
+    }
+
+    .div_little_func .col-xs-4 {
+        text-align: center;
+    }
+
+    /* 右下角按钮 */
+    .btn_right_bottom {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 24px;
+    }
+
+    /* 用户信息 */
+    .div_userinfo {
+        background-color: #34374C;
+        color: white;
+        padding: 12px 24px 12px 24px !important;
+    }
+
+    .iv_user_head {
+        width: 48px;
+        height: 48px;
+    }
+</style>
+
+<link href="/Content/CSS/zui.css" rel="stylesheet" />
+
+<link href="/Content/CSS/zui-theme-blue.css" rel="stylesheet" />
+<link href="/Content/CSS/HomeIndex.css" rel="stylesheet" />
+<link href="/Content/CSS/pagerstyles.css" rel="stylesheet" />
+
+<style>
+    body {
+        border: 0;
+        margin: 0;
+    }
+
+    input, button {
+        border: 0;
+    }
+
+    #nav {
+        text-align: right;
+        margin-top: 21px;
+        margin-right: 8px;
+        margin-bottom: 50px;
+        font-size: 13px;
+    }
+
+        #nav a {
+            color: #333;
+            font-weight: bold;
+            margin: 0 7px;
+        }
+
+            #nav a.set,
+            #nav a.login {
+                font-weight: normal;
+            }
+
+        #nav button {
+            background: #38f;
+            padding: 4px 5px;
+            margin-left: 5px;
+            color: White;
+        }
+
+        #nav a:hover {
+            color: #00C;
+        }
+
+    #main {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+        /*--AL一下背景图片--*/
+        #main .photo {
+            text-align: center;
+            margin-bottom: 19px;
+        }
+
+        #main input {
+            border: 1px solid #BBB;
+            height: 36px;
+            width: 500px;
+            padding-left: 5px;
+            margin: 0;
+        }
+
+    @@media only screen and (max-width:800px) {
+        #main input {
+            width: auto;
+        }
+    }
+
+    #main input.sub {
+        width: 100px;
+        height: 36px;
+        background: #38f;
+        color: White;
+        font-size: 15px;
+        border: 0;
+        margin: 0;
+    }
+
+    #main input.si {
+        /*float: left;*/
+    }
+
+    /*--最底一块--*/
+    #bottom {
+        margin-top: 249px;
+    }
+
+        #bottom .ap {
+            font-size: 12px;
+            text-align: center;
+        }
+
+            #bottom .ap a {
+                margin: 0 6px;
+                color: Blue;
+            }
+
+            #bottom .ap p {
+                color: #666;
+            }
+</style>
+
+
+<div>
+    <div id="nav">
+        <a href="#">新闻</a>
+        <a href="#">地图</a>
+        <a href="#">视频</a>
+        <a href="#">贴吧</a>
+    </div>
+    <!--主要部分-->
+    <div id="main">
+        <div class="photo">
+            <img src="http://blog.azlinli.com/img/bd_logo1.png" width="270" height="129" />
+        </div>
+        <form action="/home/search" method="get">
+            <div style="text-align: center;">
+                <input class="si" type="text" name="wd" value="" />
+                <input class="sub" type="submit" name="btnSubmit" value="AL一下" />
+            </div>
+        </form>
+        <!--最底一块-->
+        <div id="bottom">
+
+            <div class="ap">
+                <p>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

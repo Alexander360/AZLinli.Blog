@@ -1,0 +1,42 @@
+------------------------------Start------------------------------
+2018-06-26 10:40:34.0116 - ERROR:The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult getGuestbook(Int32, Int32)' in 'Wchl.WMBlog.WebUI.Controllers.BlogController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:25) 
+------------------------------End------------------------------
+2018-06-26 11:51:06.5363 - ERROR:The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult getGuestbook(Int32, Int32)' in 'Wchl.WMBlog.WebUI.Controllers.BlogController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:25) 
+------------------------------End------------------------------
+2018-06-26 13:43:55.0999 - ERROR:Error Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:30) System.InvalidOperationException The model item passed into the dictionary is of type 'Wchl.WMBlog.Model.VeiwModels.BlogViewModels', but this dictionary requires a model item of type 'Webdiyer.WebControls.Mvc.PagedList`1[Wchl.WMBlog.Model.Models.BlogArticle]'. Void SetModel(System.Object)    at System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   at System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   at System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   at ASP._Page_Views_topic_Detail_cshtml.Execute() in E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.WebUI\Views\topic\Detail.cshtml:line 28
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-06-26 13:45:12.4923 - ERROR:The parameters dictionary contains a null entry for parameter 'blogId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult getGuestbook(Int32, Int32)' in 'Wchl.WMBlog.WebUI.Controllers.BlogController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:25) 
+2018-06-26 13:46:17.9036 - ERROR:The parameters dictionary contains a null entry for parameter 'blogId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult getGuestbook(Int32, Int32)' in 'Wchl.WMBlog.WebUI.Controllers.BlogController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:25) 
+------------------------------End------------------------------
+2018-06-26 14:37:11.8827 - ERROR:The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult getGuestbook(Int32, Int32)' in 'Wchl.WMBlog.WebUI.Controllers.BlogController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:25) 
+------------------------------End------------------------------
+2018-06-26 15:39:13.1400 - ERROR:Error Wchl.WMBlog.Common.Log.NLogLogger.Error(E:\My_Projects\Wchl.WMBlog\Wchl.WMBlog.Common\Log\NLogLogger.cs:30) System.InvalidOperationException The model item passed into the dictionary is of type 'Wchl.WMBlog.Model.Models.Topic', but this dictionary requires a model item of type 'Wchl.WMBlog.Model.Models.BlogArticle'. Void SetModel(System.Object)    at System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   at System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   at System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+------------------------------End------------------------------

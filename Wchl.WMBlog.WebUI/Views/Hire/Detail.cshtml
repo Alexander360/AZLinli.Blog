@@ -1,0 +1,124 @@
+﻿@model Wchl.WMBlog.Model.VeiwModels.BlogViewModels
+
+@{
+    ViewBag.Title = "博客详情页";
+}
+<link href="~/Content/lib/zui/doc.css" rel="stylesheet" />
+<section>
+    <article>
+        <div spellcheck="false" class="example">
+            <br>
+            <ul class="breadcrumb">
+                <li><i class="icon-location-arrow icon-muted"></i></li>
+                <li><a href="/home/index">首页</a></li>
+                <li><a href="/blog/index">博客</a></li>
+                <li class="active">Data</li>
+            </ul>
+            <hr>
+            <article class="article">
+                <header>
+                    <h1 class="text-center">@Model.btitle</h1>
+                    <dl class="dl-inline">
+                        <dt>发布时间：</dt>
+                        <dd>@Model.bCreateTime</dd>
+                        <dt>作者：</dt>
+                        <dd>@Model.bsubmitter</dd>
+                        <dt></dt>
+                        <dd class="pull-right"><span class="label label-success">新</span> <span class="label label-warning">火爆</span> <span class="label label-info">原创</span> <span class="label label-danger"><i class="icon-eye-open"></i> @Model.btraffic</span></dd>
+                    </dl>
+                    <section class="abstract">
+                        <p><strong>摘要：</strong>@Model.digest</p>
+                    </section>
+                </header>
+                <section class="article-content">
+                    @Html.Raw(Model.bcontent)
+                </section>
+                <footer>
+                    <p class="pull-right text-muted">
+                        发布时间：@Model.bCreateTime.ToString("yyyy年MM月dd日 HH:mm:ss") &nbsp;点击数：@Model.btraffic
+                    </p>
+                    <p class="text-important">本文版权所有归<a href="###">@Model.bsubmitter</a></p>
+                    <ul class="pager pager-justify">
+                        @if (Model.previous == null)
+                        {
+                          <li class="previous disabled"><a href="#" title=""><i class="icon-arrow-left"></i> 上一篇: </a></li>
+                        }
+                        else
+                        {
+                            <li class="previous"><a href="/blog/Detail/@Model.previousID " title="@Model.previous"><i class="icon-arrow-left"></i> 上一篇: @Model.previous.Substring(0, 5)  </a></li>
+                        }
+                        @if (Model.next == null)
+                        {
+                            <li class="next disabled"><a href="#">下一篇: <i class="icon-arrow-right"></i></a></li>
+                        }
+                        else
+                        {
+                            <li class="next"><a href="/blog/Detail/@Model.nextID " title="=@Model.next">下一篇:@Model.next.Substring(0, 5) <i class="icon-arrow-right"></i></a></li>
+                        }
+                    </ul>
+                </footer>
+            </article>
+        </div>
+    </article>
+    <div id="comment">
+        @Html.Partial("_GuestbookPage")
+    </div>
+    
+</section>
+@section scripts
+{
+    <script src="~/Content/lib/laypage/laypage.js"></script>
+    <script type="text/javascript">
+        var blogid;
+        var curr;
+        $(function () {
+            $("#blogId").val(@Model.bID);
+            //运行分页
+            blogid = $("#blogId").val();
+
+            guestbookpage(curr,blogid);
+        })
+
+        function su(data) {
+
+            $("#comment").html(data);
+
+            $("#blogId").val(@Model.bID);
+
+        if (document.getElementById('textcenter') != null) {
+            //运行分页
+            guestbookpage(1, blogid);
+        }
+
+
+
+    }
+
+    //以下将以jquery.ajax为例，演示一个异步分页
+    function guestbookpage(curr,blogid) {
+        $.getJSON('/blog/getGuestbook', {
+            page: curr || 1,
+            blogId: blogid//向服务端传的参数，此处只是演示
+        }, function (res) {
+            //此处仅仅是为了演示变化的内容
+            $("#comments-list").html(res.content);
+            //显示分页
+            laypage({
+                cont: document.getElementById('textcenter'), //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+                pages: res.pages, //通过后台拿到的总页数
+                curr: curr || 1, //当前页
+                jump: function (obj, first) { //触发分页后的回调
+                    if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+                        curr = obj.curr;
+                        guestbookpage(curr, blogid);
+                    } else {
+                        curr = first;
+                        guestbookpage(curr, blogid);
+                    }
+                    
+                }
+            });
+        });
+    };
+    </script>
+    }
